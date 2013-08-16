@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" ng-app="metametrik">
+<head>
+    <meta charset="utf-8">
+    <title>MetaMetrik</title>
+    <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body>
+
+    <div id="wrapper" ng-view></div>
+ {% raw %}
+    <script type="text/ng-template" id="browse.html">
+        <div class="facets">
+            <ul>
+                <li class="facet" ng-repeat="(name, facet) in results.facets">
+                    <h5>{{ name }}</h5>
+                    <ul>
+                        <li ng-repeat="term in facet.terms">
+                            <a ng-click="filter(name, term.term)" class="active-{{isActive(name, term.term)}}">
+                                {{ term.term }} ({{ term.count }})
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="results">
+            <header>
+                <a href="/">MetaMetri<em>K</em></a>
+            </header>
+            <ul>
+                <li ng-repeat="result in results.hits.hits">
+                    {{ result._source.dependent }} in <em>{{ result._source.title }}</em>
+                </li>
+            </ul>
+        </div>
+    </script>
+{% endraw %}
+    <script src="/static/js/angular.js"></script>
+    <script src="/static/js/elastic.js"></script>
+    <script src="/static/js/elastic-angular-client.js"></script>
+    <script src="/static/js/app.js"></script>
+    <script src="/static/js/controllers.js"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+/* Main */
+body {
+    padding: 0;
+    margin: 0;
+}
+ol, ul {
+    list-style: none;
+}
+div, ul, li, a, section, nav,
+h1, h2, h3, h4, h5, h6,
+hr, input, textarea, footer, header {
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+/* HEADER */
+header {
+    height: 100px;    
+    text-align: center;
+}
+header a {
+    line-height: 100px;
+    font-size: 40px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #444;
+    border-bottom: 4px solid #EB5055;
+}
+header a small {
+    font-size: 0.4em;
+    text-transform: none;
+    font-style: italic;
+}
+
+/* STRUCTURE */
+.results, .facets {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    padding: 20px;
+    min-height: 100%;
+}
+.facets:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+.results {
+    right: 0;
+    left: 300px;
+    padding-top: 0;
+}
+.facets {
+    left: 0;
+    width: 300px;
+    background-color: #f8f8f8;
+    border-right: 1px solid #ddd;
+}
+.facets .facet {
+    background-color: #fff;
+    border-radius: 4px 4px 0 0;
+    margin-bottom: 5px;
+    border: 1px solid #eee;
+}
+
+/* Results */
+.results li {
+    padding: 10px;
+}
+.results li + li {
+    border-top: 1px solid #ccc;
+}
+
+/* Facets */
+.facets h5 {
+    background-color: #444;
+    color: #f8f8f8;
+    border-radius: 4px 4px 0 0;
+}
+.facets h5,
+.facets li a {
+    padding: 0 10px 0 5px;
+    height: 30px;
+    line-height: 30px;
+    overflow: hidden;
+}
+.facets li a {
+    display: block;
+    cursor: pointer;
+    font-size: 0.8em;
+}
+.facets li a:hover {
+    background-color: #EB5055;
+    color: #fff;
+}
+.facets li a.active-true {
+    background-color: #F5E653;
+}
