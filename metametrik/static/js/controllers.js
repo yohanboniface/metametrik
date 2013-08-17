@@ -32,6 +32,14 @@ angular.module('metametrik.controllers', [])
         return filter ? ejs.FilteredQuery(query, filter) : query;
     };
 
+    $scope.selectedItem = null;
+    $scope.select = function (item) {
+        $scope.selectedItem = item;
+    };
+    $scope.hasSelected = function () {
+        return $scope.selectedItem !== null;
+    };
+
     $scope.isActive = function (field, term) {
         return activeFilters.hasOwnProperty(field + term);
     };

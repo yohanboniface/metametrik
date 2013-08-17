@@ -73,9 +73,28 @@ header a small {
 /* Results */
 .results li {
     padding: 10px;
+    cursor: pointer;
 }
 .results li + li {
     border-top: 1px solid #ccc;
+}
+.has-selected-false .detail {
+    display: none;
+}
+.results ul {
+    width: 100%;
+    float: left;
+}
+.has-selected-true ul {
+    width: 60%;
+}
+.has-selected-true .detail {
+    width: 40%;
+    display: block;
+    float: left;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border: 1px solid #eee;
 }
 
 /* Facets */

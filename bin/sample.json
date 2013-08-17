@@ -2,9 +2,9 @@
     {
         "title": "The Colonial Origins of Comparative Development: An Empirical Investigation",
         "dependent": "GPB per capita",
-        "dependent_description": " log GDP percapita (PPPbasis) in 1995, currentprices (from the World Bank's World Development Indicators 1999)",
+        "dependent_definition": " log GDP percapita (PPPbasis) in 1995, currentprices (from the World Bank's World Development Indicators 1999)",
         "key_independent": "protection against expropriation risk",
-        "independent_description": "measured on a scale from 0 to 10, where a higher score means more protection against expropriation, averaged over 1985 to 1995, from Political Risk Services",
+        "independent_definition": "measured on a scale from 0 to 10, where a higher score means more protection against expropriation, averaged over 1985 to 1995, from Political Risk Services",
         "independents": [
             "protection against expropriation risk"
         ],
@@ -34,9 +34,9 @@
     {
         "title": "The Colonial Origins of Comparative Development: An Empirical Investigation",
         "dependent": "GPB per capita",
-        "dependent_description": " log GDP percapita (PPPbasis) in 1995, currentprices (from the World Bank's World Development Indicators 1999)",
+        "dependent_definition": " log GDP percapita (PPPbasis) in 1995, currentprices (from the World Bank's World Development Indicators 1999)",
         "key_independent": "protection against expropriation risk",
-        "independent_description": "measured on a scale from 0 to 10, where a higher score means more protection against expropriation, averaged over 1985 to 1995, from Political Risk Services",
+        "independent_definition": "measured on a scale from 0 to 10, where a higher score means more protection against expropriation, averaged over 1985 to 1995, from Political Risk Services",
         "independents": [
             "protection against expropriation risk"
         ],
@@ -66,9 +66,9 @@
     {
         "title": "The Colonial Origins of Comparative Development: An Empirical Investigation",
         "dependent": "output per worker",
-        "dependent_description": "log output per worker in 1988 from Hall and Jones (1999)",
+        "dependent_definition": "log output per worker in 1988 from Hall and Jones (1999)",
         "key_independent": "protection against expropriation risk",
-        "independent_description": "measured on a scale from 0 to 10, where a higher score means more protection against expropriation, averaged over 1985 to 1995, from Political Risk Services",
+        "independent_definition": "measured on a scale from 0 to 10, where a higher score means more protection against expropriation, averaged over 1985 to 1995, from Political Risk Services",
         "independents": [
             "protection against expropriation risk",
             "latitude"
@@ -99,9 +99,9 @@
     {
         "title": "A dummmy article with a long title",
         "dependent": "Deforestation",
-        "dependent_description": "log output per worker in 1988 from Hall and Jones (1999)",
+        "dependent_definition": "log output per worker in 1988 from Hall and Jones (1999)",
         "key_independent": "protection against expropriation risk",
-        "independent_description": "measured on a scale from 0 to 10, where a higher score means more protection against expropriation, averaged over 1985 to 1995, from Political Risk Services",
+        "independent_definition": "measured on a scale from 0 to 10, where a higher score means more protection against expropriation, averaged over 1985 to 1995, from Political Risk Services",
         "independents": [
             "protection against expropriation risk"
         ],

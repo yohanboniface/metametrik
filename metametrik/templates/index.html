@@ -7,7 +7,8 @@
 </head>
 <body>
 
-    <div id="wrapper" ng-view></div>
+    <div id="wrapper" ng-view>
+    </div>
  {% raw %}
     <script type="text/ng-template" id="browse.html">
         <div class="facets">
@@ -24,15 +25,36 @@
                 </li>
             </ul>
         </div>
-        <div class="results">
+        <div class="results has-selected-{{ hasSelected() }}">
             <header>
                 <a href="/">MetaMetri<em>K</em></a>
             </header>
             <ul>
                 <li ng-repeat="result in results.hits.hits">
-                    {{ result._source.dependent }} in <em>{{ result._source.title }}</em>
+                    <ng-include src="'row.html'"></ng-include>
                 </li>
             </ul>
+            <div class="detail">
+                <div ng-include="'detail.html'">
+            </div>
+        </div>
+    </script>
+    <script type="text/ng-template" id="row.html">
+        <div class="result-row">
+            <a ng-click="select(result._source)">
+                <strong>{{ result._source.dependent }}</strong> in <em>{{ result._source.title }}</em>
+            </a>
+        </div>
+    </script>
+    <script type="text/ng-template" id="detail.html">
+        <h4>{{ selectedItem.title }}</h4>
+        <div class="body">
+            <table>
+                <tr><th>Dependent variable</th><td>{{ selectedItem.dependent }}</td></tr>
+                <tr><th>Dependent variable definition</th><td>{{ selectedItem.dependent_definition }}</td></tr>
+                <tr><th>Key independent variable</th><td>{{ selectedItem.key_independent }}</td></tr>
+                <tr><th>Authors</th><td>{{ selectedItem.authors }}</td></tr>
+            </table>
         </div>
     </script>
 {% endraw %}
