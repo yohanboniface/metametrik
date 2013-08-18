@@ -12,7 +12,8 @@ angular.module('metametrik.controllers', [])
     var getRequest = function () {
         var request = ejs.Request()
             .indices(index)
-            .types(type),
+            .types(type)
+            .size(2),
             facets = [
                 'journal',
                 'dependent',
@@ -23,7 +24,7 @@ angular.module('metametrik.controllers', [])
                 'model'
             ];
         facets.forEach(function (term) {
-            var facet = ejs.TermsFacet(term).field(term).size(10);
+            var facet = ejs.TermsFacet(term).field(term).size(5);
             if ($scope.facetSearch !== '') {
                 facet.regex('.*' + $scope.facetSearch + '.*').regexFlags('CASE_INSENSITIVE');
             }
@@ -42,6 +43,9 @@ angular.module('metametrik.controllers', [])
 
     $scope.facetSearch = '';
     $scope.activeFilters = {};
+    $scope.results = [];
+    $scope.total = 0;
+    $scope.filters = [];
     var filterQuery = function (query) {
         var filter = null,
             filters = Object.keys($scope.activeFilters).map(function(k) { return $scope.activeFilters[k]; });
@@ -52,23 +56,27 @@ angular.module('metametrik.controllers', [])
         }
         return filter ? ejs.FilteredQuery(query, filter) : query;
     };
-    $scope.isActive = function (field, term) {
-        return $scope.activeFilters.hasOwnProperty(field + term);
-    };
-    $scope.browsing = function () {
-        var browsing = Object.keys($scope.activeFilters).length > 0;
-        console.log(browsing)
-        return browsing;
-    };
-    $scope.search = function () {
-        $scope.selectedItem = null;
+    var getQuery = function () {
         var query = ejs.QueryStringQuery('*');
         if ($scope.activeFilters) {
             query = filterQuery(query);
         }
-        $scope.results = getRequest()
-            .query(query)
-            .doSearch();
+        return query;
+    };
+    $scope.isActive = function (field, term) {
+        return $scope.activeFilters.hasOwnProperty(field + term);
+    };
+    $scope.browsing = function () {
+        return Object.keys($scope.activeFilters).length > 0;
+    };
+    $scope.search = function () {
+        $scope.selectedItem = null;
+        var populate = function (res) {
+            $scope.results = res.hits.hits;
+            $scope.total = res.hits.total;
+            $scope.facets = res.facets;
+        };
+        getRequest().query(getQuery()).doSearch(populate);
     };
     $scope.filter = function(field, term) {
         if ($scope.isActive(field, term)) {
@@ -78,6 +86,16 @@ angular.module('metametrik.controllers', [])
             $scope.activeFilters[field + term] = ejs.TermFilter(field, term);
         }
         $scope.search();
+    };
+    $scope.more = function () {
+        var from = $scope.results.length,
+            request = getRequest(),
+            append = function (res) {$scope.results = Array.concat($scope.results, res.hits.hits);};
+        request.from(from);
+        request.query(getQuery()).doSearch(append);
+    };
+    $scope.hasMore = function () {
+        return $scope.total > $scope.results.length;
     };
     $scope.search();
 

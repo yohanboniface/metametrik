@@ -14,7 +14,7 @@
         <div class="facets">
             <input type="text" placeholder="filter facets" ng-model="facetSearch" ng-change="search()" />
             <ul>
-                <li class="facet" ng-repeat="(name, facet) in results.facets" ng-show="facet.terms.length > 0">
+                <li class="facet" ng-repeat="(name, facet) in facets" ng-show="facet.terms.length > 0">
                     <h5>{{ name }}</h5>
                     <ul>
                         <li ng-repeat="term in facet.terms">
@@ -29,11 +29,15 @@
         <div class="content has-selected-{{ hasSelected() }}">
             <ng-include src="'activeFilters.html'"></ng-include>
             <div ng-show="browsing()">
-                <ul class="results">
-                    <li ng-repeat="result in results.hits.hits">
-                        <ng-include src="'row.html'"></ng-include>
-                    </li>
-                </ul>
+                <div class="total">{{ results.length }} returned ({{ total }} found) </div>
+                <div class="results">
+                    <ul>
+                        <li ng-repeat="result in results">
+                            <ng-include src="'row.html'"></ng-include>
+                        </li>
+                    </ul>
+                    <a class="button more" ng-click="more()" ng-show="hasMore()">More</a>
+                </div>
                 <div class="detail">
                     <div ng-include="'detail.html'"></div>
                 </div>
