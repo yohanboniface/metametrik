@@ -32,6 +32,14 @@ angular.module('metametrik.controllers', [])
         return request;
     };
 
+    $scope.selectedItem = null;
+    $scope.select = function (item) {
+        $scope.selectedItem = item;
+    };
+    $scope.hasSelected = function () {
+        return $scope.selectedItem !== null;
+    };
+
     $scope.facetSearch = '';
     $scope.activeFilters = {};
     var filterQuery = function (query) {
@@ -44,19 +52,14 @@ angular.module('metametrik.controllers', [])
         }
         return filter ? ejs.FilteredQuery(query, filter) : query;
     };
-
-    $scope.selectedItem = null;
-    $scope.select = function (item) {
-        $scope.selectedItem = item;
-    };
-    $scope.hasSelected = function () {
-        return $scope.selectedItem !== null;
-    };
-
     $scope.isActive = function (field, term) {
         return $scope.activeFilters.hasOwnProperty(field + term);
     };
-
+    $scope.browsing = function () {
+        var browsing = Object.keys($scope.activeFilters).length > 0;
+        console.log(browsing)
+        return browsing;
+    };
     $scope.search = function () {
         $scope.selectedItem = null;
         var query = ejs.QueryStringQuery('*');
@@ -67,7 +70,6 @@ angular.module('metametrik.controllers', [])
             .query(query)
             .doSearch();
     };
-
     $scope.filter = function(field, term) {
         if ($scope.isActive(field, term)) {
             delete $scope.activeFilters[field + term];

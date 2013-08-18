@@ -27,17 +27,19 @@
             </ul>
         </div>
         <div class="content has-selected-{{ hasSelected() }}">
-            <!--header>
-                <a href="/">MetaMetri<em>K</em></a>
-            </header-->
             <ng-include src="'activeFilters.html'"></ng-include>
-            <ul class="results">
-                <li ng-repeat="result in results.hits.hits">
-                    <ng-include src="'row.html'"></ng-include>
-                </li>
-            </ul>
-            <div class="detail">
-                <div ng-include="'detail.html'">
+            <div ng-show="browsing()">
+                <ul class="results">
+                    <li ng-repeat="result in results.hits.hits">
+                        <ng-include src="'row.html'"></ng-include>
+                    </li>
+                </ul>
+                <div class="detail">
+                    <div ng-include="'detail.html'"></div>
+                </div>
+            </div>
+            <div ng-hide="browsing()">
+                <div ng-include="'welcome.html'"></div>
             </div>
         </div>
     </script>
@@ -68,6 +70,12 @@
                 </a>
             </li>
         </ul>
+    </script>
+    <script type="text/ng-template" id="welcome.html">
+        <header>
+            <a href="/">MetaMetri<em>K</em></a>
+        </header>
+        <div>Lorem ipsum and select a filter.</div>
     </script>
 {% endraw %}
     <script src="/static/js/angular.js"></script>
