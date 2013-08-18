@@ -24,7 +24,7 @@ def run(data):
                 'journal': {'type': 'string', 'analyzer': 'keyword'},
                 'keywords': {'type': 'string', 'analyzer': 'keyword'},
                 'authors': {'type': 'string', 'analyzer': 'keyword'},
-                'year': {'type': 'date', 'analyzer': 'keyword'},
+                'year': {'type': 'string', 'analyzer': 'keyword'},
             }
         }
     }

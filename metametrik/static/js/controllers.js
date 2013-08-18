@@ -7,23 +7,36 @@ angular.module('metametrik.controllers', [])
 
     var ejs = ejsResource('http://localhost:9200'),
         index = 'papers',
-        type = 'paper',
-        activeFilters = {};
+        type = 'paper';
 
-    var request = ejs.Request()
-        .indices(index)
-        .types(type)
-        .facet(ejs.TermsFacet('journal').field('journal').size(10))
-        .facet(ejs.TermsFacet('dependent').field('dependent').size(10))
-        .facet(ejs.TermsFacet('independents').field('independents').size(10))
-        .facet(ejs.TermsFacet('key_independent').field('key_independent').size(10))
-        .facet(ejs.TermsFacet('year').field('year').size(10))
-        .facet(ejs.TermsFacet('authors').field('authors').size(10))
-        .facet(ejs.TermsFacet('model').field('model').size(10));
+    var getRequest = function () {
+        var request = ejs.Request()
+            .indices(index)
+            .types(type),
+            facets = [
+                'journal',
+                'dependent',
+                'independents',
+                'key_independent',
+                'year',
+                'authors',
+                'model'
+            ];
+        facets.forEach(function (term) {
+            var facet = ejs.TermsFacet(term).field(term).size(10);
+            if ($scope.facetSearch !== '') {
+                facet.regex('.*' + $scope.facetSearch + '.*').regexFlags('CASE_INSENSITIVE');
+            }
+            request.facet(facet);
+        });
+        return request;
+    };
 
+    $scope.facetSearch = '';
+    $scope.activeFilters = {};
     var filterQuery = function (query) {
         var filter = null,
-            filters = Object.keys(activeFilters).map(function(k) { return activeFilters[k]; });
+            filters = Object.keys($scope.activeFilters).map(function(k) { return $scope.activeFilters[k]; });
         if (filters.length > 1) {
             filter = ejs.AndFilter(filters);
         } else if (filters.length === 1) {
@@ -41,24 +54,26 @@ angular.module('metametrik.controllers', [])
     };
 
     $scope.isActive = function (field, term) {
-        return activeFilters.hasOwnProperty(field + term);
+        return $scope.activeFilters.hasOwnProperty(field + term);
     };
 
     $scope.search = function () {
+        $scope.selectedItem = null;
         var query = ejs.QueryStringQuery('*');
-        if (activeFilters) {
+        if ($scope.activeFilters) {
             query = filterQuery(query);
         }
-        $scope.results = request
+        $scope.results = getRequest()
             .query(query)
             .doSearch();
     };
 
     $scope.filter = function(field, term) {
         if ($scope.isActive(field, term)) {
-            delete activeFilters[field + term];
+            delete $scope.activeFilters[field + term];
         } else {
-            activeFilters[field + term] = ejs.TermFilter(field, term);
+            $scope.facetSearch = '';
+            $scope.activeFilters[field + term] = ejs.TermFilter(field, term);
         }
         $scope.search();
     };

@@ -37,7 +37,7 @@ header a small {
 }
 
 /* STRUCTURE */
-.results, .facets {
+.content, .facets {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -52,7 +52,7 @@ header a small {
     clear: both;
     height: 0;
 }
-.results {
+.content {
     right: 0;
     left: 300px;
     padding-top: 0;
@@ -62,12 +62,6 @@ header a small {
     width: 300px;
     background-color: #f8f8f8;
     border-right: 1px solid #ddd;
-}
-.facets .facet {
-    background-color: #fff;
-    border-radius: 4px 4px 0 0;
-    margin-bottom: 5px;
-    border: 1px solid #eee;
 }
 
 /* Results */
@@ -81,11 +75,11 @@ header a small {
 .has-selected-false .detail {
     display: none;
 }
-.results ul {
+.results {
     width: 100%;
     float: left;
 }
-.has-selected-true ul {
+.has-selected-true .results {
     width: 60%;
 }
 .has-selected-true .detail {
@@ -98,10 +92,57 @@ header a small {
 }
 
 /* Facets */
+.selected-filters {
+    padding: 5px;
+}
+.selected-filters li {
+    display: inline-block;
+    border: 1px solid #999;
+    height: 30px;
+    line-height: 30px;
+    font-size: 10px;
+    margin-right: 5px;
+    overflow: hidden;
+    background-color: #444;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+}
+.selected-filters span {
+    display: inline-block;
+    padding: 0 5px;
+}
+.selected-filters .facet {
+    background-color: #f8f8f8;
+    color: #444;
+}
+.facets .facet {
+    background-color: #fff;
+    border-radius: 4px 4px 0 0;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+}
+.facets input {
+    width: 100%;
+    margin-bottom: 20px;
+    height: 30px;
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+.selected-filters .field,
+.facets h5 {
+    border-radius: 4px 4px 0 0;
+    background-image: url('../img/tag-20.png');
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    text-indent: 30px;
+}
+.selected-filters li:hover .field {
+    background-image: url('../img/remove-20.png');
+}
 .facets h5 {
     background-color: #444;
     color: #f8f8f8;
-    border-radius: 4px 4px 0 0;
 }
 .facets h5,
 .facets li a {
@@ -120,5 +161,6 @@ header a small {
     color: #fff;
 }
 .facets li a.active-true {
-    background-color: #F5E653;
+    /*background-color: #F5E653;*/
+    font-style: italic;
 }

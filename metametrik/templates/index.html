@@ -12,8 +12,9 @@
  {% raw %}
     <script type="text/ng-template" id="browse.html">
         <div class="facets">
+            <input type="text" placeholder="filter facets" ng-model="facetSearch" ng-change="search()" />
             <ul>
-                <li class="facet" ng-repeat="(name, facet) in results.facets">
+                <li class="facet" ng-repeat="(name, facet) in results.facets" ng-show="facet.terms.length > 0">
                     <h5>{{ name }}</h5>
                     <ul>
                         <li ng-repeat="term in facet.terms">
@@ -25,11 +26,12 @@
                 </li>
             </ul>
         </div>
-        <div class="results has-selected-{{ hasSelected() }}">
-            <header>
+        <div class="content has-selected-{{ hasSelected() }}">
+            <!--header>
                 <a href="/">MetaMetri<em>K</em></a>
-            </header>
-            <ul>
+            </header-->
+            <ng-include src="'activeFilters.html'"></ng-include>
+            <ul class="results">
                 <li ng-repeat="result in results.hits.hits">
                     <ng-include src="'row.html'"></ng-include>
                 </li>
@@ -56,6 +58,16 @@
                 <tr><th>Authors</th><td>{{ selectedItem.authors }}</td></tr>
             </table>
         </div>
+    </script>
+    <script type="text/ng-template" id="activeFilters.html">
+        <ul class="selected-filters">
+            <li ng-repeat="f in activeFilters">
+                <a ng-click="filter(f.field(), f.term())">
+                    <span class="field">{{ f.field() }}</span>
+                    <span class="facet">{{ f.term() }}</span>
+                </a>
+            </li>
+        </ul>
     </script>
 {% endraw %}
     <script src="/static/js/angular.js"></script>
