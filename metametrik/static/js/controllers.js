@@ -13,15 +13,16 @@ angular.module('metametrik.controllers', [])
         var request = ejs.Request()
             .indices(index)
             .types(type)
-            .size(2),
+            .size(5),
             facets = [
                 'journal',
-                'dependent',
-                'independents',
-                'independent',
+                'dependent_variable',
+                'other_independent_variables_controls',
+                'independent_variable',
                 'year',
                 'authors',
-                'model'
+                'model',
+                'keywords'
             ];
         facets.forEach(function (term) {
             var facet = ejs.TermsFacet(term).field(term).size(5);
@@ -35,18 +36,9 @@ angular.module('metametrik.controllers', [])
 
     $scope.fieldDisplayName = function (field) {
         var names = {
-            'dependent': 'Dependent Variable',
-            'dependent_definition': 'Dependent Variable Definition',
-            'independent': 'Independent Variable',
-            'independent_definition': 'Independent Variable Definition',
-            'independents': 'Other Independent Variables / Controls',
-            'observations_number': 'Number of Observations',
-            'r_squared': 'R Squared',
-            'error': 'Standard Error',
-            'coeff': 'Coefficient',
-            'fixed_effects': 'Fixed Effects'
+            'jel_code': 'JEL code'
         };
-        return names[field] || field;
+        return names[field] || field.replace('_', ' ', 'g');
     };
     $scope.formatValue = function (value) {
         if (value instanceof Array) {

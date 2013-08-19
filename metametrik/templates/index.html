@@ -50,22 +50,20 @@
     <script type="text/ng-template" id="row.html">
         <div class="result-row">
             <a ng-click="select(result._source)">
-                <strong>{{ result._source.dependent }}</strong> in <em>{{ result._source.title }}</em>
+                <strong>{{ result._source.dependent_variable }}</strong> in <em>{{ result._source.title }}</em>, {{ formatValue(result._source.authors) }}, {{ result._source.year }}
             </a>
         </div>
     </script>
     <script type="text/ng-template" id="detail.html">
-        <div class="body">
-            <table>
-                <tr ng-repeat="(field, value) in selectedItem"><th>{{ fieldDisplayName(field) }}</th><td>{{ formatValue(value) }}</td></tr>
-            </table>
-        </div>
+        <table class="">
+            <tr ng-repeat="(field, value) in selectedItem" ng-show="value"><th>{{ fieldDisplayName(field) }}</th><td>{{ formatValue(value) }}</td></tr>
+        </table>
     </script>
     <script type="text/ng-template" id="activeFilters.html">
         <ul class="selected-filters">
             <li ng-repeat="f in activeFilters">
                 <a ng-click="filter(f.field(), f.term())">
-                    <span class="field">{{ f.field() }}</span>
+                    <span class="field">{{ fieldDisplayName(f.field()) }}</span>
                     <span class="facet">{{ f.term() }}</span>
                 </a>
             </li>

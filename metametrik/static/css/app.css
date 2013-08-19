@@ -110,6 +110,9 @@ header a small {
     background-color: #f8f8f8;
     border: 1px solid #eee;
 }
+.detail th {
+    text-transform: capitalize;
+}
 
 /* Facets */
 .selected-filters {
@@ -157,6 +160,7 @@ header a small {
     background-repeat: no-repeat;
     background-position: 10px center;
     text-indent: 30px;
+    text-transform: capitalize;
 }
 .selected-filters li:hover .field {
     background-image: url('../img/remove-20.png');

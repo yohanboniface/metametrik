@@ -8,6 +8,7 @@ Usage:
 
 import os
 import simplejson
+import csv
 
 from docopt import docopt
 
@@ -18,6 +19,83 @@ from pyelasticsearch.exceptions import ElasticHttpNotFoundError
 es = ElasticSearch('http://localhost:9200/')
 
 
+class CSVReader(object):
+
+    MANDATORY = [
+        "dependent_variable",
+        "independent_variable",
+        "journal",
+        "title",
+        "authors",
+        "standard_error",
+        "coefficient",
+    ]
+
+    def __init__(self, filename, **kwargs):
+        self.filename = filename
+        self.kwargs = kwargs
+
+    def __enter__(self):
+        self.f = open(self.filename, 'rt', encoding='utf-8', newline='')
+        data = self.f.read()
+        dialect = csv.Sniffer().sniff(data)
+        self.reader = csv.reader(data.split('\n'), dialect=dialect, **self.kwargs)
+        self.first_row = list(map(self.formatColumnName, next(self.reader)))
+        self.assertStructure()
+        return self
+
+    def formatColumnName(self, name):
+        return name.lower().strip().replace(' / ', ' ').replace(' ', '_')
+
+    def assertStructure(self):
+        for col in self.MANDATORY:
+            msg = "Missing or misnamed «{col}» column".format(col=col)
+            assert col in self.first_row, msg
+
+    def __exit__(self, type, value, traceback):
+        self.f.close()
+
+    def format(self, row):
+        row = dict(zip(self.first_row, row))
+        row['authors'] = row['authors'].split(';')
+        try:
+            row['other_independent_variables_controls'] = row['other_independent_variables_controls'].split(';')
+            row['keywords'] = row['keywords'].split(';')
+            row['jel_code'] = row['jel_code'].split(';')
+        except KeyError:
+            # non mandatory fields
+            pass
+        for col in self.MANDATORY:
+            assert col in row and row[col] != ''
+        return row
+
+    def next(self):
+        row = next(self.reader)
+        try:
+            row = self.format(row)
+        except AssertionError:
+            row = self.next()
+        return row
+
+    __next__ = next
+
+    def __iter__(self):
+        return self
+
+
+def from_csv(filepath):
+    output = []
+    with CSVReader(filepath) as f:
+        for row in f:
+            output.append(row)
+    return output
+
+
+def from_json(filepath):
+    with open(filepath) as f:
+        return simplejson.loads(f.read())
+
+
 def flush():
     try:
         es.delete_index('papers')
@@ -26,9 +104,9 @@ def flush():
     mappings = {
         'paper': {
             'properties': {
-                'dependent': {"type": "string", "analyzer": "keyword"},
-                'independent': {"type": "string", "analyzer": "keyword"},
-                'independents': {"type": "string", "analyzer": "keyword"},
+                'dependent_variable': {"type": "string", "analyzer": "keyword"},
+                'independent_variable': {"type": "string", "analyzer": "keyword"},
+                'other_independent_variables_controls': {"type": "string", "analyzer": "keyword"},
                 'model': {'type': 'string', 'analyzer': 'keyword'},
                 'journal': {'type': 'string', 'analyzer': 'keyword'},
                 'keywords': {'type': 'string', 'analyzer': 'keyword'},
@@ -59,5 +137,11 @@ if __name__ == '__main__':
         flush()
     es.health(wait_for_status='yellow')
     for filepath in files:
-        with open(filepath) as f:
-            run(simplejson.loads(f.read()))
+        _, ext = os.path.splitext(filepath)
+        if ext == ".csv":
+            data = from_csv(filepath)
+        elif ext == ".json":
+            data = from_json(filepath)
+        else:
+            raise ValueError('Unkown extension {ext}'.format(ext=ext))
+        run(data)
