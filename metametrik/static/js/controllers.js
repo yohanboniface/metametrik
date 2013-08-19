@@ -5,7 +5,7 @@
 angular.module('metametrik.controllers', [])
     .controller('BrowseCtrl', function($scope, $location, ejsResource) {
 
-    var ejs = ejsResource('http://localhost:9200'),
+    var ejs = ejsResource('/search'),
         index = 'papers',
         type = 'paper';
 
