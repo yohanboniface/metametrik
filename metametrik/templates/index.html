@@ -62,6 +62,7 @@
                 <tr><th>Dependent variable definition</th><td>{{ selectedItem.dependent_definition }}</td></tr>
                 <tr><th>Key independent variable</th><td>{{ selectedItem.key_independent }}</td></tr>
                 <tr><th>Authors</th><td>{{ selectedItem.authors }}</td></tr>
+                <tr ng-show="selectedItem.url"><th>URL</th><td><a href="{{ selectedItem.url }}">{{ selectedItem.url }}</a></td></tr>
             </table>
         </div>
     </script>
