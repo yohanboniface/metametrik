@@ -1,0 +1,5 @@
+bpython
+distribute
+pip-tools
+ipdb
+ipython
