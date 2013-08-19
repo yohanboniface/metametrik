@@ -145,6 +145,7 @@ header a small {
     height: 30px;
     border: 1px solid #ddd;
     padding: 5px;
+    font-size: 10px;
 }
 .selected-filters .field,
 .facets h5 {

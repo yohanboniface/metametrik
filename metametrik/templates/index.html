@@ -12,7 +12,7 @@
  {% raw %}
     <script type="text/ng-template" id="browse.html">
         <div class="facets">
-            <input type="text" placeholder="filter facets" ng-model="facetSearch" ng-change="search()" />
+            <input type="text" placeholder="Search a variable, author, model..." ng-model="facetSearch" ng-change="search()" />
             <ul>
                 <li class="facet" ng-repeat="(name, facet) in facets" ng-show="facet.terms.length > 0">
                     <h5>{{ name }}</h5>
