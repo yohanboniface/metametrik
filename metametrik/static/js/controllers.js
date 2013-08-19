@@ -18,7 +18,7 @@ angular.module('metametrik.controllers', [])
                 'journal',
                 'dependent',
                 'independents',
-                'key_independent',
+                'independent',
                 'year',
                 'authors',
                 'model'
@@ -33,12 +33,37 @@ angular.module('metametrik.controllers', [])
         return request;
     };
 
+    $scope.fieldDisplayName = function (field) {
+        var names = {
+            'dependent': 'Dependent Variable',
+            'dependent_definition': 'Dependent Variable Definition',
+            'independent': 'Independent Variable',
+            'independent_definition': 'Independent Variable Definition',
+            'independents': 'Other Independent Variables / Controls',
+            'observations_number': 'Number of Observations',
+            'r_squared': 'R Squared',
+            'error': 'Standard Error',
+            'coeff': 'Coefficient',
+            'fixed_effects': 'Fixed Effects'
+        };
+        return names[field] || field;
+    };
+    $scope.formatValue = function (value) {
+        if (value instanceof Array) {
+            value = value.join(', ');
+        }
+        return value;
+    };
+
     $scope.selectedItem = null;
     $scope.select = function (item) {
         $scope.selectedItem = item;
     };
     $scope.hasSelected = function () {
         return $scope.selectedItem !== null;
+    };
+    $scope.isSelected = function (item) {
+        return $scope.selectedItem == item;
     };
 
     $scope.facetSearch = '';

@@ -3,7 +3,7 @@
         "title": "The Colonial Origins of Comparative Development: An Empirical Investigation",
         "dependent": "GPB per capita",
         "dependent_definition": " log GDP percapita (PPPbasis) in 1995, currentprices (from the World Bank's World Development Indicators 1999)",
-        "key_independent": "protection against expropriation risk",
+        "independent": "protection against expropriation risk",
         "independent_definition": "measured on a scale from 0 to 10, where a higher score means more protection against expropriation, averaged over 1985 to 1995, from Political Risk Services",
         "independents": [
             "protection against expropriation risk"
@@ -11,9 +11,9 @@
         "coeff": 0.54,
         "error": 0.04,
         "model": "OLS",
-        "fixed_effect": false,
-        "number_observations": 110,
-        "r_squarred": 0.62,
+        "fixed_effects": false,
+        "observations_number": 110,
+        "r_squared": 0.62,
         "journal": "American Economic Review",
         "authors": [
             "Daron Acemoglu",
@@ -36,7 +36,7 @@
         "title": "The Colonial Origins of Comparative Development: An Empirical Investigation",
         "dependent": "GPB per capita",
         "dependent_definition": " log GDP percapita (PPPbasis) in 1995, currentprices (from the World Bank's World Development Indicators 1999)",
-        "key_independent": "protection against expropriation risk",
+        "independent": "protection against expropriation risk",
         "independent_definition": "measured on a scale from 0 to 10, where a higher score means more protection against expropriation, averaged over 1985 to 1995, from Political Risk Services",
         "independents": [
             "protection against expropriation risk"
@@ -44,9 +44,9 @@
         "coeff": 0.54,
         "error": 0.04,
         "model": "OLS",
-        "fixed_effect": false,
-        "number_observations": 110,
-        "r_squarred": 0.62,
+        "fixed_effects": false,
+        "observations_number": 110,
+        "r_squared": 0.62,
         "journal": "American Economic Review",
         "authors": [
             "Daron Acemoglu",
@@ -69,7 +69,7 @@
         "title": "The Colonial Origins of Comparative Development: An Empirical Investigation",
         "dependent": "output per worker",
         "dependent_definition": "log output per worker in 1988 from Hall and Jones (1999)",
-        "key_independent": "protection against expropriation risk",
+        "independent": "protection against expropriation risk",
         "independent_definition": "measured on a scale from 0 to 10, where a higher score means more protection against expropriation, averaged over 1985 to 1995, from Political Risk Services",
         "independents": [
             "protection against expropriation risk",
@@ -78,9 +78,9 @@
         "coeff": 0.54,
         "error": 0.04,
         "model": "OLS",
-        "fixed_effect": false,
-        "number_observations": 110,
-        "r_squarred": 0.62,
+        "fixed_effects": false,
+        "observations_number": 110,
+        "r_squared": 0.62,
         "journal": "American Economic Review",
         "authors": [
             "Daron Acemoglu",
@@ -103,7 +103,7 @@
         "title": "A dummmy article with a long title",
         "dependent": "Deforestation",
         "dependent_definition": "log output per worker in 1988 from Hall and Jones (1999)",
-        "key_independent": "protection against expropriation risk",
+        "independent": "protection against expropriation risk",
         "independent_definition": "measured on a scale from 0 to 10, where a higher score means more protection against expropriation, averaged over 1985 to 1995, from Political Risk Services",
         "independents": [
             "protection against expropriation risk"
@@ -111,9 +111,9 @@
         "coeff": 0.54,
         "error": 0.04,
         "model": "2SLS",
-        "fixed_effect": false,
-        "number_observations": 110,
-        "r_squarred": 0.62,
+        "fixed_effects": false,
+        "observations_number": 110,
+        "r_squared": 0.62,
         "journal": "Quarterly Journal of Economics",
         "authors": [
             "Paolo Conte",
@@ -135,7 +135,7 @@
         "title": "This one is very interesting",
         "dependent": "housing prices",
         "dependent_definition": "log output per worker in 1988 from Hall and Jones (1999)",
-        "key_independent": "inflation",
+        "independent": "inflation",
         "independent_definition": "measured on a scale from 0 to 10, where a higher score means more protection against expropriation, averaged over 1985 to 1995, from Political Risk Services",
         "independents": [
             "parents education"
@@ -143,9 +143,9 @@
         "coeff": 0.54,
         "error": 0.04,
         "model": "2SLS",
-        "fixed_effect": false,
-        "number_observations": 110,
-        "r_squarred": 0.62,
+        "fixed_effects": false,
+        "observations_number": 110,
+        "r_squared": 0.62,
         "journal": "Quarterly Journal of Economics",
         "authors": [
             "Frode Jacobsen",
@@ -167,7 +167,7 @@
         "title": "This one is very ververy intersting",
         "dependent": "housing prices",
         "dependent_definition": "log output per worker in 1988 from Hall and Jones (1999)",
-        "key_independent": "inflation",
+        "independent": "inflation",
         "independent_definition": "measured on a scale from 0 to 10, where a higher score means more protection against expropriation, averaged over 1985 to 1995, from Political Risk Services",
         "independents": [
             "parents education"
@@ -175,9 +175,9 @@
         "coeff": 0.54,
         "error": 0.04,
         "model": "DR22",
-        "fixed_effect": false,
-        "number_observations": 110,
-        "r_squarred": 0.62,
+        "fixed_effects": false,
+        "observations_number": 110,
+        "r_squared": 0.62,
         "journal": "Quarterly Journal of Economics",
         "authors": [
             "Mark Knopfler",

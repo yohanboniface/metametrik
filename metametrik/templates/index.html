@@ -15,7 +15,7 @@
             <input type="text" placeholder="Search a variable, author, model..." ng-model="facetSearch" ng-change="search()" />
             <ul>
                 <li class="facet" ng-repeat="(name, facet) in facets" ng-show="facet.terms.length > 0">
-                    <h5>{{ name }}</h5>
+                    <h5>{{ fieldDisplayName(name) }}</h5>
                     <ul>
                         <li ng-repeat="term in facet.terms">
                             <a ng-click="filter(name, term.term)" class="active-{{isActive(name, term.term)}}">
@@ -32,7 +32,7 @@
                 <div class="total">{{ results.length }} returned ({{ total }} found) </div>
                 <div class="results">
                     <ul>
-                        <li ng-repeat="result in results">
+                        <li ng-repeat="result in results" class="selected-{{ isSelected(result._source) }}">
                             <ng-include src="'row.html'"></ng-include>
                         </li>
                     </ul>
@@ -55,14 +55,9 @@
         </div>
     </script>
     <script type="text/ng-template" id="detail.html">
-        <h4>{{ selectedItem.title }}</h4>
         <div class="body">
             <table>
-                <tr><th>Dependent variable</th><td>{{ selectedItem.dependent }}</td></tr>
-                <tr><th>Dependent variable definition</th><td>{{ selectedItem.dependent_definition }}</td></tr>
-                <tr><th>Key independent variable</th><td>{{ selectedItem.key_independent }}</td></tr>
-                <tr><th>Authors</th><td>{{ selectedItem.authors.join(', ') }}</td></tr>
-                <tr ng-show="selectedItem.url"><th>URL</th><td><a href="{{ selectedItem.url }}">{{ selectedItem.url }}</a></td></tr>
+                <tr ng-repeat="(field, value) in selectedItem"><th>{{ fieldDisplayName(field) }}</th><td>{{ formatValue(value) }}</td></tr>
             </table>
         </div>
     </script>

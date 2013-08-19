@@ -27,8 +27,8 @@ def flush():
         'paper': {
             'properties': {
                 'dependent': {"type": "string", "analyzer": "keyword"},
+                'independent': {"type": "string", "analyzer": "keyword"},
                 'independents': {"type": "string", "analyzer": "keyword"},
-                'key_independent': {"type": "string", "analyzer": "keyword"},
                 'model': {'type': 'string', 'analyzer': 'keyword'},
                 'journal': {'type': 'string', 'analyzer': 'keyword'},
                 'keywords': {'type': 'string', 'analyzer': 'keyword'},

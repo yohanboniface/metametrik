@@ -89,6 +89,9 @@ header a small {
 .results li + li {
     border-top: 1px solid #ccc;
 }
+.results li.selected-true {
+    background-color: #f8f8f8;
+}
 .has-selected-false .detail {
     display: none;
 }
