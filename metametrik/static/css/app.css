@@ -101,6 +101,7 @@ header a small {
 }
 .has-selected-true .results {
     width: 60%;
+    padding-right: 20px;
 }
 .has-selected-true .detail {
     width: 40%;
@@ -112,6 +113,9 @@ header a small {
 }
 .detail th {
     text-transform: capitalize;
+}
+.detail table {
+    font-size: 11px;
 }
 
 /* Facets */

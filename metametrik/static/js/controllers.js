@@ -49,9 +49,34 @@ angular.module('metametrik.controllers', [])
         return value;
     };
 
+    var orderObject = function (obj, order) {
+        var iterator = function (i) { return order.indexOf(i[0]) !== -1 ? order.indexOf(i[0]) : 99;};
+        var factory = function (i) { return {key: i[0], value: i[1]};};
+        return _.map(_.sortBy(_.pairs(obj), iterator), factory);
+    };
     $scope.selectedItem = null;
     $scope.select = function (item) {
+        var fieldsOrder = [
+            'authors',
+            'journal',
+            'title',
+            'year',
+            'dependent_variable',
+            'dependent_variable_definition',
+            'independent_variable',
+            'independent_variable_definition',
+            'coefficient',
+            'standard_error',
+            'model',
+            'controls',
+            'fixed_effects',
+            'number_of_observations',
+            'r_squared',
+            'jel_code',
+            'keywords'
+        ];
         $scope.selectedItem = item;
+        $scope.orderedselectedItem = orderObject(item, fieldsOrder);
     };
     $scope.hasSelected = function () {
         return $scope.selectedItem !== null;
@@ -82,11 +107,6 @@ angular.module('metametrik.controllers', [])
         }
         return query;
     };
-    var orderFacets = function (facets) {
-        var iterator = function (i) { return FACETS[i[0]] ? FACETS.indexOf(i[0]) : 99;};
-        var factory = function (i) { return {name: i[0], facet: i[1]};};
-        return _.map(_.sortBy(_.pairs(facets), iterator), factory);
-    };
     $scope.isActive = function (field, term) {
         return $scope.activeFilters.hasOwnProperty(field + term);
     };
@@ -98,7 +118,7 @@ angular.module('metametrik.controllers', [])
         var populate = function (res) {
             $scope.results = res.hits.hits;
             $scope.total = res.hits.total;
-            $scope.facets = orderFacets(res.facets);
+            $scope.facets = orderObject(res.facets, FACETS);
         };
         var request = getRequest();
         if (typeof size !== "undefined") {request.size(size);}

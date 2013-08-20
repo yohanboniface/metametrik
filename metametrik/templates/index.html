@@ -14,11 +14,11 @@
         <div class="facets">
             <input type="text" placeholder="Search a variable, author, model..." ng-model="facetSearch" ng-change="search()" />
             <ul>
-                <li class="facet" ng-repeat="item in facets" ng-show="item.facet.terms.length > 0">
-                    <h5>{{ fieldDisplayName(item.name) }}</h5>
+                <li class="facet" ng-repeat="item in facets" ng-show="item.value.terms.length > 0">
+                    <h5>{{ fieldDisplayName(item.key) }}</h5>
                     <ul>
-                        <li ng-repeat="term in item.facet.terms">
-                            <a ng-click="filter(item.name, term.term)" class="active-{{isActive(item.name, term.term)}}">
+                        <li ng-repeat="term in item.value.terms">
+                            <a ng-click="filter(item.key, term.term)" class="active-{{isActive(item.key, term.term)}}">
                                 {{ term.term }} ({{ term.count }})
                             </a>
                         </li>
@@ -55,8 +55,8 @@
         </div>
     </script>
     <script type="text/ng-template" id="detail.html">
-        <table class="">
-            <tr ng-repeat="(field, value) in selectedItem" ng-show="value"><th>{{ fieldDisplayName(field) }}</th><td>{{ formatValue(value) }}</td></tr>
+        <table>
+            <tr ng-repeat="item in orderedselectedItem" ng-show="item.value"><th>{{ fieldDisplayName(item.key) }}</th><td>{{ formatValue(item.value) }}</td></tr>
         </table>
     </script>
     <script type="text/ng-template" id="activeFilters.html">
