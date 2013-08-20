@@ -57,14 +57,17 @@ class CSVReader(object):
 
     def format(self, row):
         row = dict(zip(self.first_row, row))
-        row['authors'] = row['authors'].split(';')
-        try:
-            row['other_independent_variables_controls'] = row['other_independent_variables_controls'].split(';')
-            row['keywords'] = row['keywords'].split(';')
-            row['jel_code'] = row['jel_code'].split(';')
-        except KeyError:
-            # non mandatory fields
-            pass
+        lists = [
+            'authors',
+            'other_independent_variables_controls',
+            'keywords',
+            'jel_code'
+        ]
+        for field in lists:
+            try:
+                row[field] = row[field].split(';')
+            except KeyError:
+                pass
         for col in self.MANDATORY:
             assert col in row and row[col] != ''
         return row
