@@ -57,6 +57,7 @@ footer {
     padding: 20px;
     background-color: #666;
     text-align: center;
+    clear: both;
 }
 footer,
 footer a {
