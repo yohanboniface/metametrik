@@ -1,5 +1,6 @@
 /*jshint globalstrict:true */
 /*global angular:true */
+/*global _:true */
 'use strict';
 
 angular.module('metametrik.controllers', [])
@@ -7,24 +8,24 @@ angular.module('metametrik.controllers', [])
 
     var ejs = ejsResource('/search'),
         index = 'papers',
-        type = 'paper';
+        type = 'paper',
+        FACETS = [ // order will be used for rendering
+            'dependent_variable',
+            'independent_variable',
+            'model',
+            'journal',
+            'other_independent_variables_controls',
+            'year',
+            'authors',
+            'keywords'
+        ];
 
     var getRequest = function () {
         var request = ejs.Request()
             .indices(index)
             .types(type)
-            .size(5),
-            facets = [
-                'journal',
-                'dependent_variable',
-                'other_independent_variables_controls',
-                'independent_variable',
-                'year',
-                'authors',
-                'model',
-                'keywords'
-            ];
-        facets.forEach(function (term) {
+            .size(5);
+        FACETS.forEach(function (term) {
             var facet = ejs.TermsFacet(term).field(term).size(5);
             if ($scope.facetSearch !== '') {
                 facet.regex('.*' + $scope.facetSearch + '.*').regexFlags('CASE_INSENSITIVE');
@@ -36,7 +37,8 @@ angular.module('metametrik.controllers', [])
 
     $scope.fieldDisplayName = function (field) {
         var names = {
-            'jel_code': 'JEL code'
+            'jel_code': 'JEL code',
+            'other_independent_variables_controls': 'Controls'
         };
         return names[field] || field.replace('_', ' ', 'g');
     };
@@ -80,20 +82,27 @@ angular.module('metametrik.controllers', [])
         }
         return query;
     };
+    var orderFacets = function (facets) {
+        var iterator = function (i) { return FACETS[i[0]] ? FACETS.indexOf(i[0]) : 99;};
+        var factory = function (i) { return {name: i[0], facet: i[1]};};
+        return _.map(_.sortBy(_.pairs(facets), iterator), factory);
+    };
     $scope.isActive = function (field, term) {
         return $scope.activeFilters.hasOwnProperty(field + term);
     };
     $scope.browsing = function () {
         return Object.keys($scope.activeFilters).length > 0;
     };
-    $scope.search = function () {
+    $scope.search = function (size) {
         $scope.selectedItem = null;
         var populate = function (res) {
             $scope.results = res.hits.hits;
             $scope.total = res.hits.total;
-            $scope.facets = res.facets;
+            $scope.facets = orderFacets(res.facets);
         };
-        getRequest().query(getQuery()).doSearch(populate);
+        var request = getRequest();
+        if (typeof size !== "undefined") {request.size(size);}
+        request.query(getQuery()).doSearch(populate);
     };
     $scope.filter = function(field, term) {
         if ($scope.isActive(field, term)) {
@@ -114,6 +123,6 @@ angular.module('metametrik.controllers', [])
     $scope.hasMore = function () {
         return $scope.total > $scope.results.length;
     };
-    $scope.search();
+    $scope.search(0);
 
 });

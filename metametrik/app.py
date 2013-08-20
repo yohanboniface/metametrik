@@ -24,4 +24,5 @@ if __name__ == '__main__':
     url_for('static', filename='js/elastic.js')
     url_for('static', filename='js/elastic-angular-client.js')
     url_for('static', filename='js/controllers.js')
+    url_for('static', filename='js/underscore.js')
     url_for('static', filename='img/logo.png')

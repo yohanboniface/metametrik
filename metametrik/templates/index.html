@@ -14,11 +14,11 @@
         <div class="facets">
             <input type="text" placeholder="Search a variable, author, model..." ng-model="facetSearch" ng-change="search()" />
             <ul>
-                <li class="facet" ng-repeat="(name, facet) in facets" ng-show="facet.terms.length > 0">
-                    <h5>{{ fieldDisplayName(name) }}</h5>
+                <li class="facet" ng-repeat="item in facets" ng-show="item.facet.terms.length > 0">
+                    <h5>{{ fieldDisplayName(item.name) }}</h5>
                     <ul>
-                        <li ng-repeat="term in facet.terms">
-                            <a ng-click="filter(name, term.term)" class="active-{{isActive(name, term.term)}}">
+                        <li ng-repeat="term in item.facet.terms">
+                            <a ng-click="filter(item.name, term.term)" class="active-{{isActive(item.name, term.term)}}">
                                 {{ term.term }} ({{ term.count }})
                             </a>
                         </li>
@@ -79,6 +79,7 @@
     <script src="/static/js/angular.js"></script>
     <script src="/static/js/elastic.js"></script>
     <script src="/static/js/elastic-angular-client.js"></script>
+    <script src="/static/js/underscore.js"></script>
     <script src="/static/js/app.js"></script>
     <script src="/static/js/controllers.js"></script>
 </body>

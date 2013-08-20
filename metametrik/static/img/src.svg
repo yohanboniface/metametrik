@@ -25,8 +25,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="16"
-     inkscape:cx="31.437489"
-     inkscape:cy="84.686343"
+     inkscape:cx="21.437489"
+     inkscape:cy="85.123843"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -72,13 +72,14 @@
        inkscape:export-xdpi="89.996864"
        inkscape:export-ydpi="89.996864"
        style="fill:#ffffff;stroke:none"
-       d="m 18.232679,954.43147 -6.187184,0 -11.04854331,11.04854 8.83883491,8.83884 11.0485434,-11.04855 0,-6.18718 -2.651651,-2.65165 z m -0.441941,3.09359 c 0.976311,0.97631 0.976309,2.55922 0,3.53553 -0.97631,0.97631 -2.559223,0.97631 -3.535534,0 -0.976311,-0.97631 -0.97631,-2.55922 0,-3.53553 0.976309,-0.97631 2.559223,-0.97631 3.535534,0 z"
+       d="m 18.09695,955.13135 -5.599999,0 -9.9999993,10 7.9999993,8 9.999999,-10.00001 0,-5.59999 z m -0.399999,2.8 c 0.883655,0.88365 0.883654,2.31634 0,3.19999 -0.883655,0.88366 -2.316344,0.88366 -3.2,0 -0.883656,-0.88365 -0.883655,-2.31634 0,-3.19999 0.883654,-0.88366 2.316344,-0.88366 3.2,0 z"
        id="tag-20"
        inkscape:connector-curvature="0"
-       inkscape:label="tag-20" />
+       inkscape:label="tag-20"
+       sodipodi:nodetypes="cccccccsssss" />
     <path
        style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       d="M 30,2 29,4 C 26,4 25,7 25,7 L 38,7 C 38,7 37,4 34,4 L 33,2 z M 25.25,9 27,21 36,21 37.75,9 z"
+       d="M 30,2 29,4 C 26,4 25,7 25,7 L 38,7 C 38,7 37,4 34,4 L 33,2 z M 25.25,9 28,21 35,21 37.75,9 z"
        transform="translate(0,952.36218)"
        id="remove-20"
        inkscape:label="remove-20"
