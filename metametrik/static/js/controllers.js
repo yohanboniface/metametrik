@@ -17,6 +17,7 @@ angular.module('metametrik.controllers', [])
             'other_independent_variables_controls',
             'year',
             'authors',
+            'jel_code',
             'keywords'
         ];
 
