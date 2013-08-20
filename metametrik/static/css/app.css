@@ -141,7 +141,7 @@ footer a {
     font-size: 10px;
     margin-right: 5px;
     overflow: hidden;
-    background-color: #444;
+    background-color: #508C84;
     border-radius: 4px;
     cursor: pointer;
     color: #fff;
@@ -181,7 +181,7 @@ footer a {
     background-image: url('../img/remove-20.png');
 }
 .facets h5 {
-    background-color: #444;
+    background-color: #508C84;
     color: #f8f8f8;
 }
 .facets h5,

@@ -137,7 +137,7 @@ angular.module('metametrik.controllers', [])
     $scope.more = function () {
         var from = $scope.results.length,
             request = getRequest(),
-            append = function (res) {$scope.results = Array.concat($scope.results, res.hits.hits);};
+            append = function (res) {$scope.results = $scope.results.concat(res.hits.hits);};
         request.from(from);
         request.query(getQuery()).doSearch(append);
     };
