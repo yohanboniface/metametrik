@@ -7,8 +7,7 @@
 </head>
 <body>
 
-    <div id="wrapper" ng-view>
-    </div>
+    <div id="wrapper" ng-view></div>
  {% raw %}
     <script type="text/ng-template" id="browse.html">
         <div class="facets">
@@ -45,6 +44,8 @@
             <div ng-hide="browsing()">
                 <div ng-include="'welcome.html'"></div>
             </div>
+            <footer>Prototype built for Metametrik project of the Open Economics Working Group at the Open Knowledge Foundation and supported by the Alfred P. Sloan Foundation. <br />Get in touch at <a href="mailto:economics@okfn.org">economics@okfn.org</a> | <a href="http://openeconomics.net">http://openeconomics.net</a>. <br />It's <a href="https://github.com/okfn/metametrik/">open source</a>.
+            </footer>
         </div>
     </script>
     <script type="text/ng-template" id="row.html">

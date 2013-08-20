@@ -34,7 +34,7 @@ input[type="submit"],
 }
 
 
-/* HEADER */
+/* HEADER - FOOTER */
 header {
     height: 100px;    
     text-align: center;
@@ -51,6 +51,16 @@ header a small {
     font-size: 0.4em;
     text-transform: none;
     font-style: italic;
+}
+footer {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #666;
+    text-align: center;
+}
+footer,
+footer a {
+    color: #fff;
 }
 
 /* STRUCTURE */
