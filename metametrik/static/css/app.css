@@ -14,7 +14,8 @@ hr, input, textarea, footer, header {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: "Open Sans", sans-serif;
+    color: #333;
 }
 input[type="submit"],
 .button {
@@ -33,46 +34,28 @@ input[type="submit"],
     cursor: pointer;
 }
 
-
-/* HEADER - FOOTER */
-header {
-    height: 100px;    
-    text-align: center;
-}
-header a {
-    line-height: 100px;
-    font-size: 40px;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: #444;
-    border-bottom: 4px solid #EB5055;
-}
-header a small {
-    font-size: 0.4em;
-    text-transform: none;
-    font-style: italic;
-}
-footer {
-    margin-top: 40px;
-    padding: 20px;
-    background-color: #666;
-    text-align: center;
-    clear: both;
-}
-footer,
-footer a {
-    color: #fff;
-}
-
 /* STRUCTURE */
 .content, .facets {
-    position: absolute;
-    top: 0;
-    bottom: 0;
     padding: 20px;
-    min-height: 100%;
+    float: left;
 }
-.facets:after {
+.content {
+    padding-top: 0;
+    width: 900px;
+}
+.facets {
+    left: 0;
+    width: 300px;
+    background-color: #f8f8f8;
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+}
+.wrapper {
+    width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.wrapper:after {
     visibility: hidden;
     display: block;
     font-size: 0;
@@ -80,16 +63,63 @@ footer a {
     clear: both;
     height: 0;
 }
-.content {
-    right: 0;
-    left: 300px;
-    padding-top: 0;
+
+
+/* HEADER - FOOTER */
+header {
+    background-color: #1d3431;
+/*    background:-moz-linear-gradient(top,#fff 0,#f3f3f3 50%,#ededed 51%,#fff 100%);
+    background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#fff),color-stop(50%,#f3f3f3),color-stop(51%,#ededed),color-stop(100%,#fff));
+    background:-webkit-linear-gradient(top,#fff 0,#f3f3f3 50%,#ededed 51%,#fff 100%);
+    background:-o-linear-gradient(top,#fff 0,#f3f3f3 50%,#ededed 51%,#fff 100%);
+    background:-ms-linear-gradient(top,#fff 0,#f3f3f3 50%,#ededed 51%,#fff 100%);
+    background:linear-gradient(top,#fff 0,#f3f3f3 50%,#ededed 51%,#fff 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#ffffff',GradientType=0);*/
+    border-bottom: 1px solid #000;
+    height: 65px;
 }
-.facets {
-    left: 0;
-    width: 300px;
-    background-color: #f8f8f8;
-    border-right: 1px solid #ddd;
+header h1 {
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 60px;
+    color: #fff;
+}
+header small {
+    font-size: 0.6em;
+    text-transform: none;
+}
+header a {
+    text-decoration: none;
+    color: #fff;
+}
+header .okfn-ribbon {
+    float: right;
+    right: 0;
+}
+header .okfn-ribbon a {
+    background-image: url("http://assets.okfn.org/web/images/okf-ribbon.png");
+    background-position: center -27px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    display: block;
+    height: 73px;
+    overflow: hidden;
+    position: absolute;
+    text-indent: -999px;
+    width: 48px;
+    z-index: 1;
+}
+footer {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #1d3431;
+    text-align: center;
+    clear: both;
+    height: 400px;
+}
+footer * {
+    color: #fff;
 }
 
 /* Results */
@@ -176,6 +206,7 @@ footer a {
     background-position: 10px center;
     text-indent: 30px;
     text-transform: capitalize;
+    color: #fff;
 }
 .selected-filters li:hover .field {
     background-image: url('../img/remove-20.png');
@@ -197,10 +228,45 @@ footer a {
     font-size: 0.8em;
 }
 .facets li a:hover {
-    background-color: #EB5055;
+    background-color: #1d3431;
     color: #fff;
 }
 .facets li a.active-true {
     /*background-color: #F5E653;*/
     font-style: italic;
+}
+
+/* WELCOME */
+.welcome a {
+    color: #1F4849;
+    text-decoration: none;
+}
+.welcome li {
+    margin: 30px 0;
+}
+.welcome .steps h4 {
+    display: table-cell;
+    width: 200px;
+    text-align: center;
+    vertical-align: middle;
+}
+.welcome .steps p {
+    display: table-cell;
+}
+.welcome .steps:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+.welcome .steps span {
+    background: none repeat scroll 0 0 #508C84;
+    border-radius: 20px 20px 20px 20px;
+    color: #FFFFFF;
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
 }

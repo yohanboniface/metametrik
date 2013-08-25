@@ -3,11 +3,30 @@
 <head>
     <meta charset="utf-8">
     <title>MetaMetrik</title>
+    <link rel="stylesheet" href="http://openeconomics.net/wp-content/themes/wordpress-theme-okfn/fonts/stylesheet.css">
     <link rel="stylesheet" href="/static/css/app.css">
 </head>
 <body>
-
-    <div id="wrapper" ng-view></div>
+    <header>
+        <div class="wrapper">
+            <div class="okfn-ribbon"><a title="Part of the Open Knowledge Foundation Network" data-target="#okf-panel" data-toggle="collapse" href="http://okfn.org/">An Open Knowledge Foundation Site</a></div>
+            <h1>
+                <a href="/">MetaMetrik</a>
+                <small>a project by <a href="http://openeconomics.net">OpenEconomics</a></small>
+            </h1>
+        </div>
+    </header>
+    <div class="wrapper" ng-view></div>
+    <footer>
+        <div class="wrapper">
+            <ul>
+            <li>Prototype built for Metametrik project of the Open Economics Working Group at the Open Knowledge Foundation</li>
+            <li>Supported by the Alfred P. Sloan Foundation</li>
+            <li>It's <a href="https://github.com/okfn/metametrik/">open source</a></li>
+            Get in touch at <a href="mailto:economics@okfn.org">economics@okfn.org</a> | <a href="http://openeconomics.net">http://openeconomics.net</a>. <br />
+            </ul>
+        </div>
+    </footer>
  {% raw %}
     <script type="text/ng-template" id="browse.html">
         <div class="facets">
@@ -44,8 +63,6 @@
             <div ng-hide="browsing()">
                 <div ng-include="'welcome.html'"></div>
             </div>
-            <footer>Prototype built for Metametrik project of the Open Economics Working Group at the Open Knowledge Foundation and supported by the Alfred P. Sloan Foundation. <br />Get in touch at <a href="mailto:economics@okfn.org">economics@okfn.org</a> | <a href="http://openeconomics.net">http://openeconomics.net</a>. <br />It's <a href="https://github.com/okfn/metametrik/">open source</a>.
-            </footer>
         </div>
     </script>
     <script type="text/ng-template" id="row.html">
@@ -71,10 +88,33 @@
         </ul>
     </script>
     <script type="text/ng-template" id="welcome.html">
-        <header>
-            <a href="/">MetaMetri<em>K</em></a>
-        </header>
-        <div>Lorem ipsum and select a filter.</div>
+        <div class="welcome">
+            <p>Metametrik is a prototype of a platform for storing and search of econometric results, a project lead by the Open Economics Group of the Open Knowledge Foundation.</p>
+            <h2>How Do I Use Metametrik?</h2>
+            <ul class="steps">
+                <li>
+                    <h4><span>1</span></h4>
+                    <p>Type in the name of a parameter. Search for e.g. a variable, model, author or a journal. Alternatively, browse the database in the left bar.</p>
+                </li>
+                <li>
+                    <h4><span>2</span></h4>
+                    <p>Select other features to narrow down your search. Only papers which use e.g. these controls, this model, etc. The selected facets will appear as tags on the top of your screen. You can also remove the facets by clicking on them.</p>
+                </li>
+                <li>
+                    <h4><span>3</span></h4>
+                    <p>To view more details about the papers which match your search, click on the paper and you will see descriptions of the variables, the magnitude of the relationship, number of observations, URL of the article, etc.</p>
+                </li>
+            </ul>
+            <h2>Project Background</h2>
+            <p>Several developments have led to a dramatic increase in the number of empirical papers in economics. Since computing power and data storage have become <a target="_blank" href="http://en.wikipedia.org/wiki/Moore's_law">cheaper and more easily available</a>, the possibilities to store and analyse data have increased. At the same time better research designs have lead to a “credibility revolution” in empirical economics (See <a href="http://econ.lse.ac.uk/staff/spischke/AP%20JEP.pdf">Angrist and Pischke 2010</a>).</p>
+            <p>Despite the large numbers of empirical papers there is still no unified and machine-readable standard for saving regression results or a platform which would enable storage, search and meta analysis. Economics researchers depend on using full-text search to find relevant papers which either use similar variables and data or similar methodology they can learn from. Additionally the lack of vocabularies of empirical economics makes classification of results more difficult.</p>
+            <h2>About this Prototype</h2>
+            <p>This prototype is an example of a platform where regression results are stored through input in a spreadsheet by an informed researcher, who enters the results on the level of a single regression (See current <a href="https://docs.google.com/a/okfn.org/spreadsheet/ccc?key=0Aor55UapMP6BdFVDWlpLVmZxaFdocDZaTkFzVUZ3ckE#gid=0">spreadsheet</a>). The platform then enables search with the option of several facets, including dependent variable, independent variable, model, controls, journal, year, authors, JEL codes and key words.</p>
+            <p>Once a large number of papers has been accumulated in the database, this search would enable a researcher to look for a set of relevant papers choosing the facets to narrow down the search. Once a set of papers is identified, a detailed view allows the user to view the variable descriptions, the magnitude of the relationship (coefficient and standard error), the number of observations, the URL of the article, use of fixed effects and other details. There is the option to go back and remove some of the facets if the researcher would like to select an alternative specification of the regressions they are interested in.</p>
+            <h2>Future Perspectives</h2>
+            <p>Like machine readable formats for bibliography (e.g. bibtex), a new standard would facilitate the dissemination and organization of existing results. Ideally, this project would offer an open storage where researchers can submit their regression results. The standard could also be implemented in a wide range of open source econometric packages and projects like <a href="http://www.r-project.org/">R</a> or <a href="http://econpapers.repec.org/">RePec</a>.</p>
+            <p>From a practical perspective, this project would greatly help to organize the large pile of existing regressions and facilitate literature reviews: If someone is interested in the relationship between democracy and economic development, for example, they need not go through the large pile of current papers but can simply look up the relationship on the open storage: The storage will then produce a list of existing results, along with intuitive visualizations (what % of results are positive/negative, how do the results evolve over time/i.e. is there a convergence in results). From an academic perspective, the project would also facilitate the compilation of meta-regressions that have become increasingly popular.</p>
+        </div>
     </script>
 {% endraw %}
     <script src="/static/js/angular.js"></script>

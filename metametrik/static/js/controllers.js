@@ -14,7 +14,7 @@ angular.module('metametrik.controllers', [])
             'independent_variable',
             'model',
             'journal',
-            'other_independent_variables_controls',
+            'controls',
             'year',
             'authors',
             'jel_code',
