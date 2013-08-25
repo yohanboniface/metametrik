@@ -9,5 +9,6 @@ angular.module('metametrik', [
     config(['$routeProvider', function($routeProvider) {
         $routeProvider
             .when('/browse/', {templateUrl: 'browse.html', controller: 'BrowseCtrl'})
+            .when('/browse/:filters', {templateUrl: 'browse.html', controller: 'BrowseCtrl'})
             .otherwise({redirectTo: '/browse/'});
     }]);

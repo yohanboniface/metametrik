@@ -4,7 +4,7 @@
 'use strict';
 
 angular.module('metametrik.controllers', [])
-    .controller('BrowseCtrl', function($scope, $location, ejsResource) {
+    .controller('BrowseCtrl', function($scope, $location, $routeParams, ejsResource) {
 
     var ejs = ejsResource('/search'),
         index = 'papers',
@@ -109,7 +109,7 @@ angular.module('metametrik.controllers', [])
         return query;
     };
     $scope.isActive = function (field, term) {
-        return $scope.activeFilters.hasOwnProperty(field + term);
+        return $scope.activeFilters.hasOwnProperty(field + ':' + term);
     };
     $scope.browsing = function () {
         return Object.keys($scope.activeFilters).length > 0;
@@ -127,12 +127,13 @@ angular.module('metametrik.controllers', [])
     };
     $scope.filter = function(field, term) {
         if ($scope.isActive(field, term)) {
-            delete $scope.activeFilters[field + term];
+            delete $scope.activeFilters[field + ':' + term];
         } else {
             $scope.facetSearch = '';
-            $scope.activeFilters[field + term] = ejs.TermFilter(field, term);
+            addFilter(field, term);
         }
-        $scope.search();
+        var path = _.keys($scope.activeFilters).join(',');
+        $location.path('/browse/' + path).replace();
     };
     $scope.more = function () {
         var from = $scope.results.length,
@@ -144,6 +145,23 @@ angular.module('metametrik.controllers', [])
     $scope.hasMore = function () {
         return $scope.total > $scope.results.length;
     };
-    $scope.search(0);
+    var addFilter = function (field, term) {
+        $scope.activeFilters[field + ':' + term] = ejs.TermFilter(field, term);
+    };
+    var initFilters = function () {
+        var path = $routeParams.filters,
+            filter;
+        if (path) {
+            path = path.split(',');
+            for (var i = 0; i < path.length; i++) {
+                filter = path[i].split(':');
+                if (filter.length == 2) {
+                    addFilter(filter[0], filter[1]);
+                }
+            }
+        }
+    };
+    initFilters();
+    $scope.search();
 
 });
