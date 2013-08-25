@@ -59,7 +59,7 @@ class CSVReader(object):
         row = dict(zip(self.first_row, row))
         lists = [
             'authors',
-            'other_independent_variables_controls',
+            'controls',
             'keywords',
             'jel_code'
         ]
@@ -109,7 +109,7 @@ def flush():
             'properties': {
                 'dependent_variable': {"type": "string", "analyzer": "keyword"},
                 'independent_variable': {"type": "string", "analyzer": "keyword"},
-                'other_independent_variables_controls': {"type": "string", "analyzer": "keyword"},
+                'controls': {"type": "string", "analyzer": "keyword"},
                 'model': {'type': 'string', 'analyzer': 'keyword'},
                 'journal': {'type': 'string', 'analyzer': 'keyword'},
                 'keywords': {'type': 'string', 'analyzer': 'keyword'},

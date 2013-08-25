@@ -38,8 +38,7 @@ angular.module('metametrik.controllers', [])
 
     $scope.fieldDisplayName = function (field) {
         var names = {
-            'jel_code': 'JEL code',
-            'other_independent_variables_controls': 'Controls'
+            'jel_code': 'JEL code'
         };
         return names[field] || field.replace('_', ' ', 'g');
     };
