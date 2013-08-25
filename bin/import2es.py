@@ -45,7 +45,7 @@ class CSVReader(object):
         return self
 
     def formatColumnName(self, name):
-        return name.lower().strip().replace(' / ', ' ').replace(' ', '_')
+        return name.lower().strip().replace(' ', '_')
 
     def assertStructure(self):
         for col in self.MANDATORY:
@@ -61,15 +61,17 @@ class CSVReader(object):
             'authors',
             'controls',
             'keywords',
-            'jel_code'
+            'jel_code',
+            'model'
         ]
         for field in lists:
-            try:
+            if field in row and row[field] != "":
                 row[field] = row[field].split(';')
-            except KeyError:
-                pass
         for col in self.MANDATORY:
             assert col in row and row[col] != ''
+        for key, value in list(row.items()):
+            if not value:
+                del row[key]
         return row
 
     def next(self):
@@ -115,6 +117,7 @@ def flush():
                 'keywords': {'type': 'string', 'analyzer': 'keyword'},
                 'authors': {'type': 'string', 'analyzer': 'keyword'},
                 'year': {'type': 'string', 'analyzer': 'keyword'},
+                'jel_code': {'type': 'string', 'analyzer': 'keyword'},
             }
         }
     }
